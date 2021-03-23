@@ -7,16 +7,31 @@ import Footer from './componets/layout/footer'
 import Welcome from './componets/content/welcome'
 import ContactInfo from './componets/content/contactInfo'
 
+
+const props = {
+  inverted: true
+}
+
+const updateBodyDarkMode = () => {
+  if (props.inverted) {
+    document.body.classList.add('dark');
+  }
+};
+
 const App = () => {
   return (
     <Router>
-      <Menu/>
+      {updateBodyDarkMode()}
+      <Menu {...props} />
       <main>
-          <Route path='/' component={Welcome} exact />
-          <Route path='/contact' component={ContactInfo} />
-          <Route path='/projects' component={ContactInfo} />
+        <Route path='/' exact
+          render={() => (
+            <Welcome {...props} />)
+          } />
+        <Route path='/contact' component={ContactInfo} />
+        <Route path='/projects' component={ContactInfo} />
       </main>
-      <Footer/>
+      <Footer {...props} />
     </Router>
   )
 }

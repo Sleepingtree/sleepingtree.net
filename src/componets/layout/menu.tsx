@@ -4,12 +4,14 @@ import { Menu, MenuItemProps } from 'semantic-ui-react'
 
 type MenuState = {
   activeItem: string
+  inverted?: boolean
 }
 
 export default class MenuComponet extends Component<{}, MenuState> {
   
   static defaultProps = {
-    activeItem: 'welcome'
+    activeItem: 'welcome',
+    inverted: true
   }
 
   constructor(props: MenuState) {
@@ -24,9 +26,9 @@ export default class MenuComponet extends Component<{}, MenuState> {
   }
 
   render() {
-    const { activeItem } = this.state;
+    const { activeItem, inverted } = this.state;
     return (
-      <Menu inverted>
+      <Menu inverted ={inverted}>
         <Link to ='/'>
           <Menu.Item
             name='welcome'
