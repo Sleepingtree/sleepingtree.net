@@ -1,30 +1,52 @@
-import { Navbar, Nav, Container } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Component } from 'react'
+import { Link } from 'react-router-dom';
+import { Menu, MenuItemProps } from 'semantic-ui-react'
 
-type MenuProps = {
-  titleMaping: Map<string,string>
+type MenuState = {
+  activeItem: string
 }
 
-const Menu = ({titleMaping}: MenuProps) => {
-  return (
-    <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
-      <Container>
-        {titleMaping.forEach((value, key) =>{
-          <LinkContainer to={key}>
-            <Navbar.Brand>{value}</Navbar.Brand>
-          </LinkContainer>
-        })}
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='mr-auto'>
-            <LinkContainer to='/about'>
-              <Nav.Link>About</Nav.Link>
-            </LinkContainer>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  )
-}
+export default class MenuComponet extends Component<{}, MenuState> {
+  
+  static defaultProps = {
+    activeItem: 'welcome'
+  }
 
-export default Menu
+  constructor(props: MenuState) {
+    super(props);
+    this.state = { ...props };
+  }
+
+  handleItemClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, { name }: MenuItemProps) => {
+    if (name) {
+      this.setState({ activeItem: name });
+    }
+  }
+
+  render() {
+    const { activeItem } = this.state;
+    return (
+      <Menu inverted>
+        <Link to ='/'>
+          <Menu.Item
+            name='welcome'
+            active={activeItem === 'welcome'}
+            onClick={this.handleItemClick}
+          >
+            Welcome
+          </Menu.Item>
+        </Link>
+
+        <Link to ='/contact'>
+          <Menu.Item
+            name='reviews'
+            active={activeItem === 'reviews'}
+            onClick={this.handleItemClick}
+          >
+            ContactInfo
+          </Menu.Item>
+        </Link>
+      </Menu>
+    )
+  }
+}

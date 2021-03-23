@@ -1,6 +1,10 @@
 const Welcome = () => {
     return (
-      <div>this is a Welcome page</div>
+      <div>
+        <body>
+          this is a Welcome page
+        </body>
+      </div>
     )
   }
   
