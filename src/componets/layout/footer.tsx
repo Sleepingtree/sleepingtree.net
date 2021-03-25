@@ -8,7 +8,7 @@ type FooterProps = {
 const Footer: FunctionComponent<FooterProps> = ({ inverted = true }) =>
   <Sticky className='ui fixed bottom sticky' style={{ width: '100%' }}>
     <Segment inverted={inverted} vertical style={{ padding: '5em 0em' }}>
-      <Container>
+      <Container inverted={inverted}>
         <Grid divided inverted={inverted} stackable>
           <Grid.Row>
             <Grid.Column width={5} />

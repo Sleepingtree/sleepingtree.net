@@ -17,3 +17,15 @@ code {
   background: #333;
   color: #fff;
 }
+
+.ui.inverted.menu .item{
+  background: #1b1c1d;
+}
+
+.ui.inverted.menu .dropdown.item .menu{
+  background: #333;
+}
+
+.ui.vertical :not(.inverted) .segment {
+  background: #eeeeee;
+}

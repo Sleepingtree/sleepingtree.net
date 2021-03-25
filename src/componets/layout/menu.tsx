@@ -1,6 +1,6 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import { Menu, MenuItemProps } from 'semantic-ui-react'
+import { Dropdown, Menu, MenuItemProps } from 'semantic-ui-react'
 
 type MenuState = {
   activeItem: string
@@ -39,15 +39,16 @@ export default class MenuComponet extends Component<{}, MenuState> {
           </Menu.Item>
         </Link>
 
-        <Link to ='/contact'>
-          <Menu.Item
-            name='reviews'
-            active={activeItem === 'reviews'}
-            onClick={this.handleItemClick}
-          >
-            ContactInfo
-          </Menu.Item>
-        </Link>
+        <Dropdown inverted = {inverted} item text='Projects'>
+          <Dropdown.Menu inverted = {inverted}>
+            <Link to ='/projects/discordBot'>
+              <Dropdown.Item inverted = {inverted}>Discord bot</Dropdown.Item>
+            </Link>
+            <Link to ='/projects/reactSite'>
+              <Dropdown.Item inverted = {inverted}>This site!</Dropdown.Item>
+            </Link>
+          </Dropdown.Menu>
+        </Dropdown>
       </Menu>
     )
   }

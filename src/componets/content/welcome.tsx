@@ -8,7 +8,7 @@ type WelcomeProps = {
   inverted?: boolean
 }
 
-const Welcome: FunctionComponent<WelcomeProps> = ({ inverted = true }) =>
+const Welcome: FunctionComponent<WelcomeProps> = () =>
   <div>
     <Container>
       <Image src={avatarImage} avatar size='small' floated ='left'/>

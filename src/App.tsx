@@ -5,7 +5,9 @@ import Menu from './componets/layout/menu'
 import Footer from './componets/layout/footer'
 
 import Welcome from './componets/content/welcome'
-import ContactInfo from './componets/content/contactInfo'
+import ReactPoject from './componets/content/reactProject'
+import ThisSiteProject from './componets/content/thisSiteProject'
+import DiscordBot from './componets/content/discordBot'
 
 
 const props = {
@@ -28,8 +30,12 @@ const App = () => {
           render={() => (
             <Welcome {...props} />)
           } />
-        <Route path='/contact' component={ContactInfo} />
-        <Route path='/projects' component={ContactInfo} />
+        <Route path='/projects' exact component={ReactPoject} />
+        <Route path='/projects/reactSite/' component={ThisSiteProject}/>
+        <Route path='/projects/discordBot/'
+         render={() => (
+          <DiscordBot {...props} />)
+        } /> 
       </main>
       <Footer {...props} />
     </Router>
