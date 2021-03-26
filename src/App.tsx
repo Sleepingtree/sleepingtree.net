@@ -24,6 +24,8 @@ const App = () => {
   return (
     <Router>
       {updateBodyDarkMode()}
+      <div id='page-container'>
+      <div id="content-wrap">
       <Menu {...props} />
       <main>
         <Route path='/' exact
@@ -31,13 +33,17 @@ const App = () => {
             <Welcome {...props} />)
           } />
         <Route path='/projects' exact component={ReactPoject} />
-        <Route path='/projects/reactSite/' component={ThisSiteProject}/>
+        <Route path='/projects/reactSite/'  render={() => (
+          <ThisSiteProject {...props} />)
+        }/>
         <Route path='/projects/discordBot/'
          render={() => (
           <DiscordBot {...props} />)
         } /> 
       </main>
+      </div>
       <Footer {...props} />
+      </div>
     </Router>
   )
 }

@@ -1,13 +1,13 @@
 import React, { FunctionComponent } from "react";
-import { Container, Grid, Header, Segment, Sticky } from "semantic-ui-react";
+import { Container, Grid, Header, Icon, Segment, Sticky } from "semantic-ui-react";
 
 type FooterProps = {
   inverted?: boolean
 }
 
 const Footer: FunctionComponent<FooterProps> = ({ inverted = true }) =>
-  <Sticky className='ui fixed bottom sticky' style={{ width: '100%' }}>
-    <Segment inverted={inverted} vertical style={{ padding: '5em 0em' }}>
+  <Sticky className='footer' style={{ width: '100%' }}>
+    <Segment inverted={inverted} vertical style={{ padding: '3em 0em' }}>
       <Container inverted={inverted}>
         <Grid divided inverted={inverted} stackable>
           <Grid.Row>
@@ -17,9 +17,9 @@ const Footer: FunctionComponent<FooterProps> = ({ inverted = true }) =>
                 Contact Info
                 </Header>
               <Container text>
-                Email: <a href='mailto:ajgrabow@gmail.com'>ajgrabow@gmail.com</a>
+              <Icon name={"mail"}/>Email: <a href='mailto:ajgrabow@gmail.com'>ajgrabow@gmail.com</a>
                 <br />
-                  GitHub: <a href='https://github.com/Sleepingtree'>https://github.com/Sleepingtree</a>
+                  <Icon name={"github"}/>GitHub: <a href='https://github.com/Sleepingtree'>https://github.com/Sleepingtree</a>
               </Container>
             </Grid.Column>
             <Grid.Column width={5} />
