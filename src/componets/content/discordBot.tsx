@@ -56,6 +56,7 @@ const DiscordBot: FunctionComponent<discordBotProps> = ({ inverted = true }) =>
           I had to maintain my own list of what users would like to play as well as manually add/remove people from selection depending on who was playing
               </List.List>
       </List>
+      
     </Container>
   </div>
 
