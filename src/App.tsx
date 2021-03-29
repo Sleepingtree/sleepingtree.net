@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
+import * as paths from './paths';
 
 import Menu from './componets/layout/menu'
 import Footer from './componets/layout/footer'
@@ -28,15 +29,15 @@ const App = () => {
       <div id="content-wrap">
       <Menu {...props} />
       <main>
-        <Route path='/' exact
+        <Route path={paths.baseUrl} exact
           render={() => (
             <Welcome {...props} />)
           } />
-        <Route path='/projects' exact component={ReactPoject} />
-        <Route path='/projects/reactSite/'  render={() => (
+        <Route path={paths.projectsPath} exact component={ReactPoject} />
+        <Route path={paths.thisSitePath}  render={() => (
           <ThisSiteProject {...props} />)
         }/>
-        <Route path='/projects/discordBot/'
+        <Route path={paths.discordBotPath}
          render={() => (
           <DiscordBot {...props} />)
         } /> 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Divider, Header, Image, List } from 'semantic-ui-react';
 
 import httpOnly from '../../resorces/Http only access.png';
+import {discordBotPath} from '../../paths';
 
 const ThisSiteProject = ({ inverted = true }) => <div>
   
@@ -16,7 +17,7 @@ const ThisSiteProject = ({ inverted = true }) => <div>
       <Divider />
         Since this is a personal site. I wanted to keep costs down, but at the same time I didn't want to host everything requireing me to have a computer running all the time. I thought about 
         having my Raspberry Pi also run a Apache Httpd server, but I ultimitly decided agenst this when I ran into trobles compliling the typescript from my
-        &nbsp;<Link to ='/projects/discordBot'>Node discord bot.</Link> AWS free teir has gotten a lot better over the years, and with the low level of trafic.
+        &nbsp;<Link to ={discordBotPath}>Node discord bot.</Link> AWS free teir has gotten a lot better over the years, and with the low level of trafic.
         <Header size='medium' inverted={inverted}>S3</Header>
         <Divider/>
         Since this is a static page hosting it using s3's option for static page hosting. The only thing the really had to be tooled with when using s3 for this stack is the fact that react routes 
