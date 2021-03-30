@@ -12,24 +12,19 @@ const DiscordBot: FunctionComponent<discordBotProps> = ({ inverted = true }) =>
       <Divider />
           Like I said on my welcome page I consider myself a back-end devloper. I was given the task to work with another devloper to set up
           a React app as a proof of concept for modernizing our internal UI. They have used React before and already prototyped a skeleton UI.
-          <br />
-      <br />
+          <Divider hidden />
           However; as many UI's go the actual UI is only half the battle. I was brough on to help with the backend implimentaiton. In retrospect
           My boss probably assumed I would implement this backend with Java, as we where a primarrly a Java based at the time, I was talked into
           implemneting the back in in Node.js to keep the stack homogeneous.
-          <br />
-      <br />
+          <Divider hidden />
           Boy, am I ever glad I was conviced to look into Node
-          <br />
-      <br />
+          <Divider hidden />
             Around the same time Valerant was the new hotness as far as gaming went, and I was part of a large enough group that we could consitently
             have our own in house games. In the past I had built a bot to help with in house games, but for league. It used a system where people could list
             their prefired roles and try and figure out how to make teams. This bot had some issues with it which I will get to later. With all this in mind
             I decided to kill two birds with one stone so to speak. Build a Bot to learn Node and help us spead up in house game creation.
-
-            
             <Header size='medium' inverted={inverted}>Initial Goals for the bot</Header>
-            <Divider />
+      <Divider />
       <List ordered inverted={inverted}>
         <List.Item>
           Learn about Node.js
@@ -56,7 +51,7 @@ const DiscordBot: FunctionComponent<discordBotProps> = ({ inverted = true }) =>
           I had to maintain my own list of what users would like to play as well as manually add/remove people from selection depending on who was playing
               </List.List>
       </List>
-      
+
     </Container>
   </div>
 
