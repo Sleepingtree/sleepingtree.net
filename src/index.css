@@ -44,3 +44,32 @@ code {
 #content-wrap {
   padding-bottom: 11rem;    /* Footer height */
 }
+
+#bot-loading-icon{
+  animation: rotation 2s infinite linear;
+}
+
+#bot-status-icon{
+  color: green;
+  font-size: 0.5em;
+  position: relative;
+  left: -3em;
+  bottom: -1.5em;
+}
+
+#bot-card-div{
+  max-width: 15em;
+}
+
+#desktop-bot-div{
+  padding-left: 1em;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

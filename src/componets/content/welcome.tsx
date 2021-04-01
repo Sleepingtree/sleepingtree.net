@@ -12,10 +12,10 @@ type WelcomeProps = {
   inverted?: boolean
 }
 
-const Welcome: FunctionComponent<WelcomeProps> = () =>{
+const Welcome: FunctionComponent<WelcomeProps> = ({inverted = true}) =>{
   return(
     <div>
-      {isMobile() ? WelcomeMobile() : RenderDesktop()}
+      {isMobile() ? WelcomeMobile() : RenderDesktop(inverted)}
     </div>
   )
 }
@@ -29,16 +29,14 @@ const WelcomeMobile = () => {
   )
 }
 
-const RenderDesktop = () => {
-
- 
+const RenderDesktop = (inverted: boolean) => {
   return (
     <Grid>
       <Grid.Row>
-        <GridColumn width={2}>
+        <GridColumn width={2} >
           <Sticky >
-            <Container className="mobile-hidden">
-              <BotStatusComponet/>
+            <Container className="mobile-hidden" id="desktop-bot-div">
+              <BotStatusComponet inverted = {inverted}/>
             </Container>
           </Sticky>
         </GridColumn>
