@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FunctionComponent } from 'react'
 import { Container, Icon, Image, Segment } from 'semantic-ui-react';
 
 import { discordBotStatusUrl } from '../paths';
@@ -8,40 +8,52 @@ type BotStatus = {
   avatarURL: string;
 }
 
-//This will only be called when loaded, setSTatus and setAvatar will not change, but makes the linter happy
-const useMountEffect = (setStatus: (status: string) => void, setAvatar: (url: string) => void) => useEffect(() => {
-  loadBotStatus(setStatus, setAvatar);
-}, [setStatus, setAvatar]);
+type BotStatusProps ={
+  inverted: boolean;
+  desktop: boolean;
+}
 
-async function loadBotStatus(setStatus: (status: string) => void, setAvatar: (url: string) => void) {
+//This will only be called when loaded, setSTatus and setAvatar will not change, but makes the linter happy
+const useMountEffect = (setRespose:(status: BotStatus) => void) => useEffect(() => {
+  loadBotStatus(setRespose);
+}, [setRespose]);
+
+async function loadBotStatus(setRespose:(status: BotStatus) => void) {
   const repsone = await fetch(discordBotStatusUrl);
   if (repsone.ok) {
     const bodyJson = await repsone.json() as BotStatus;
     if (bodyJson) {
-      setStatus(bodyJson.message);
-      setAvatar(bodyJson.avatarURL);
+      setRespose(bodyJson);
     }
   }
 }
 
-const BotStatusComponet = ({ inverted = true }) => {
-  const [botAvatarUrl, setBotAvatarUrl] = useState<string | undefined>();
-  const [botStatus, setBotStatus] = useState<string | undefined>();
+const BotStatusComponet:  FunctionComponent<BotStatusProps>  = ({ inverted = true, desktop}) => {
+  const [response, setRespose] = useState<BotStatus>();
 
-  useMountEffect(setBotStatus, setBotAvatarUrl);
+  useMountEffect(setRespose);
 
-  const loaded = (
-    <div>
-      <div id='bot-photo-div' style={{float:'left'}}>
-        <Image src={botAvatarUrl} avatar floated='left' />
+  const loaded = () =>{
+    if(!response){
+      return unloaded;
+    }
+    const animationTimer = response.message.length / 5;
+
+    return (
+    <Container>
+      <Container id='bot-photo-div' style={{float:'left'}}>
+        <Image src={response.avatarURL} avatar floated='left' />
         <Icon name="circle" id="bot-status-icon" />
-      </div>
-      <div className='ticker-wrap' style={{float:'left'}}>
-        <div className={botStatus && botStatus.length > 10 ? 'ticker' : ''}>{botStatus}</div>
-      </div>
-    </div>
+      </Container>
+      <Container className={desktop ? 'ticker-wrap desktop' :'ticker-wrap mobile'}>
+        <div className={response.message.length > 10 ? 'ticker' : ''} 
+          style={{animationDuration : `${animationTimer}s`}}>
+            {response.message}
+        </div>
+      </Container>
+    </Container>
+  )}
 
-  )
   const unloaded = (
     <div>
       <Icon name="spinner" id="bot-loading-icon" />Loading ...
@@ -50,7 +62,7 @@ const BotStatusComponet = ({ inverted = true }) => {
 
   const body = (
     <Segment inverted={inverted} id='bot-card-div'>
-      {(botAvatarUrl && botStatus) ? loaded : unloaded}
+      {(response) ? loaded() : unloaded}
     </Segment>
   )
 

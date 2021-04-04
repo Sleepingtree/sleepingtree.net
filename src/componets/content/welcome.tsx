@@ -19,7 +19,6 @@ const Welcome: FunctionComponent<WelcomeProps> = ({inverted = true}) =>{
     </div>
   )
 }
- 
 
 const WelcomeMobile = () => {
   return (
@@ -33,21 +32,20 @@ const RenderDesktop = (inverted: boolean) => {
   return (
     <Grid>
       <Grid.Row>
-        <GridColumn width={2} >
+        <GridColumn width={3} >
           <Sticky >
-            <Container className="mobile-hidden" id="desktop-bot-div">
-              <BotStatusComponet inverted = {inverted}/>
+            <Container id="desktop-bot-div">
+              <BotStatusComponet desktop={!isMobile()} inverted = {inverted}/>
             </Container>
           </Sticky>
         </GridColumn>
-        <GridColumn width={13}>
+        <GridColumn width={12}>
           {renderInner()}
         </GridColumn>
       </Grid.Row>
     </Grid>
   )
 }
-
 
 const renderInner = () =>
   <Container floated='right'>
