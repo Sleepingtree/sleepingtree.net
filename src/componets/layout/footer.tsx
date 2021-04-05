@@ -15,11 +15,13 @@ const Footer: FunctionComponent<FooterProps> = ({ inverted = true }) =>
             <Grid.Column width={5}>
               <Header as='h4' inverted={inverted}>
                 Contact Info
-                </Header>
-              <Container text>
-              <Icon name={"mail"}/>Email: <a href='mailto:ajgrabow@gmail.com'>ajgrabow@gmail.com</a>
+              </Header>
+                <Container text>
+                <Icon name={"mail"}/>Email: <a href='mailto:ajgrabow@gmail.com'>ajgrabow@gmail.com</a>
                 <br />
-                  <Icon name={"github"}/>GitHub: <a href='https://github.com/Sleepingtree'>https://github.com/Sleepingtree</a>
+                <Icon name={"github"}/>GitHub: <a href='github.com/Sleepingtree'>github.com/Sleepingtree</a>
+                <br/>
+                <Icon name={"linkedin"}/>Linkedin: <a href='linkedin.com/in/AaronGrabow'>linkedin.com/in/AaronGrabow</a>
               </Container>
             </Grid.Column>
             <Grid.Column width={5} />

@@ -18,6 +18,8 @@ const props = {
 const updateBodyDarkMode = () => {
   if (props.inverted) {
     document.body.classList.add('dark');
+  }else {
+    document.body.classList.remove('dark');
   }
 };
 

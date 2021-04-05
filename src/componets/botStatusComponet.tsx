@@ -13,17 +13,21 @@ type BotStatusProps ={
   desktop: boolean;
 }
 
-//This will only be called when loaded, setSTatus and setAvatar will not change, but makes the linter happy
+//This will only be called when loaded, setStatus and setAvatar will not change, but makes the linter happy
 const useMountEffect = (setRespose:(status: BotStatus) => void) => useEffect(() => {
-  loadBotStatus(setRespose);
+  loadBotStatus().then(data =>{
+    if(data){
+      setRespose(data);
+    }
+  });
 }, [setRespose]);
 
-async function loadBotStatus(setRespose:(status: BotStatus) => void) {
+async function loadBotStatus() {
   const repsone = await fetch(discordBotStatusUrl);
   if (repsone.ok) {
     const bodyJson = await repsone.json() as BotStatus;
     if (bodyJson) {
-      setRespose(bodyJson);
+      return bodyJson;
     }
   }
 }

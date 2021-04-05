@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
-import { Container, Grid, GridColumn, Image, Sticky } from 'semantic-ui-react';
+import { Container, Image } from 'semantic-ui-react';
 
 import isMobile from '../helpers/mobilehelper';
 
-import BotStatusComponet from '../botStatusComponet';
+import RenderDesktop from '../layout/desktopLayout'
 
 import banner from '../../resorces/banner-2.png';
 import avatarImage from '../../resorces/avatar 1.png';
@@ -15,7 +15,7 @@ type WelcomeProps = {
 const Welcome: FunctionComponent<WelcomeProps> = ({inverted = true}) =>{
   return(
     <div>
-      {isMobile() ? WelcomeMobile() : RenderDesktop(inverted)}
+      {isMobile() ? WelcomeMobile() : RenderDesktop(inverted, renderInner)}
     </div>
   )
 }
@@ -25,25 +25,6 @@ const WelcomeMobile = () => {
     <div>
       {renderInner()}
     </div>
-  )
-}
-
-const RenderDesktop = (inverted: boolean) => {
-  return (
-    <Grid>
-      <Grid.Row>
-        <GridColumn width={3} >
-          <Sticky >
-            <Container id="desktop-bot-div">
-              <BotStatusComponet desktop={!isMobile()} inverted = {inverted}/>
-            </Container>
-          </Sticky>
-        </GridColumn>
-        <GridColumn width={12}>
-          {renderInner()}
-        </GridColumn>
-      </Grid.Row>
-    </Grid>
   )
 }
 
