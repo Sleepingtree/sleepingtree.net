@@ -1,7 +1,8 @@
-import { useState, useEffect, FunctionComponent } from 'react'
+import { useState, useEffect, FunctionComponent } from 'react';
 import { Container, Icon, Image, Segment } from 'semantic-ui-react';
+import ioClient from 'socket.io-client';
 
-import { discordBotStatusUrl } from '../paths';
+import { ioConnectPath } from '../paths';
 
 type BotStatus = {
   message: string;
@@ -13,29 +14,19 @@ type BotStatusProps ={
   desktop: boolean;
 }
 
-//This will only be called when loaded, setStatus and setAvatar will not change, but makes the linter happy
-const useMountEffect = (setRespose:(status: BotStatus) => void) => useEffect(() => {
-  loadBotStatus().then(data =>{
-    if(data){
-      setRespose(data);
-    }
-  });
-}, [setRespose]);
-
-async function loadBotStatus() {
-  const repsone = await fetch(discordBotStatusUrl);
-  if (repsone.ok) {
-    const bodyJson = await repsone.json() as BotStatus;
-    if (bodyJson) {
-      return bodyJson;
-    }
-  }
-}
-
-const BotStatusComponet:  FunctionComponent<BotStatusProps>  = ({ inverted = true, desktop}) => {
+const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true, desktop}) => {
   const [response, setRespose] = useState<BotStatus>();
 
-  useMountEffect(setRespose);
+  useEffect(() => {
+    const socket = ioClient({path: ioConnectPath});
+    socket.on('botStatus', (data) =>{
+      console.log(data);
+      if(data){
+        setRespose(data);
+      }
+    });
+    return () => {socket.disconnect();}
+  }, []);
 
   const loaded = () =>{
     if(!response){
