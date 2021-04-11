@@ -2,7 +2,7 @@ import { useState, useEffect, FunctionComponent } from 'react';
 import { Container, Icon, Image, Segment } from 'semantic-ui-react';
 import ioClient from 'socket.io-client';
 
-import { ioConnectPath } from '../paths';
+import { discordBotUrl, ioConnectPath } from '../paths';
 
 type BotStatus = {
   message: string;
@@ -18,7 +18,7 @@ const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true
   const [response, setRespose] = useState<BotStatus>();
 
   useEffect(() => {
-    const socket = ioClient({path: ioConnectPath});
+    const socket = ioClient(discordBotUrl, {path: ioConnectPath});
     socket.on('botStatus', (data) =>{
       console.log(data);
       if(data){

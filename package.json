@@ -2,7 +2,7 @@
   "name": "sleepingtree.net",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:3001",
+  "proxy": "https://localhost",
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
