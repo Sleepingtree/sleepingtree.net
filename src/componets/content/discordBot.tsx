@@ -49,7 +49,7 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
             Boy, am I ever glad I was convinced to look into Node
             <Divider hidden />
       </Container>
-      {isMobile && ref ? MobileDiscordBotSection(inverted, ref, true) : ""}
+      {isMobile && ref ? MobileDiscordBotSection(inverted, ref, true) : <Divider hidden />}
       <Container text inverted={inverted}>
         Around the same time Valerant was the new hotness as far as gaming went, and I was part of a large enough group that we could consitently
         have our own in house games. In the past I had built a bot to help with in house games, but used for league. It used a system where people could list
@@ -91,7 +91,7 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
         I set up a basic express app. It started as a way to keep my app running after whatever script I wrote finished executing, but it turned out to have some nice 
         side benefits like providing real-time data to the bot status card right at the top of this page! 
         <Divider hidden/>
-        So we have a node app, great.. now what? Well if you google Discord bot node you will get a ton of results. <a href='https://discord.js.org'>Discord js</a>&nbsp;
+        So we have a node app, great.. now what? Well if you google Discord bot node you will get a ton of results. <a href='https://discord.js.org'>Discord js </a>
         is the other main include for this project, there's not much to say about it other then it's a nice api to use to build any sort of discord bot using JavaScript.
         <Divider hidden/>
         For those who are not familier with games the idea of what can make a balanced game
