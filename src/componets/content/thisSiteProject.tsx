@@ -16,7 +16,7 @@ const ThisSiteProject = ({ inverted = true }) => <div>
     <Divider />
       Since this is a personal site. I wanted to keep costs down, but at the same time I didn't want to host everything requiring me to have a computer running all the time. I thought about
       having my Raspberry Pi also run a Apache Httpd server, but I ultimitely decided against this when I ran into troubles compiling the typescript from my
-      &nbsp;<Link to={discordBotPath}>Node discord bot.</Link> AWS free tier has gotten a lot better over the years, and with the low level of traffic
+      &nbsp;<Link to={discordBotPath}>Node discord bot.</Link> AWS free tier has gotten a lot better over the years, and with the low level of traffic I satarted with AWS.
       <Header size='medium' inverted={inverted}>S3</Header>
     <Divider />
       Since this is a static page hosting, its using s3's option for static page hosting. The only thing the really had to be tooled with when using s3 for this stack is the fact that react routes
@@ -41,8 +41,8 @@ const ThisSiteProject = ({ inverted = true }) => <div>
     <Header size='medium' inverted={inverted}>Route 53</Header>
     <Divider />
         Route 53 is simply AWS's DNS server with a lot of nice quality of life features built into it. For example it comes with built in health checks, logging, sub net mapping and more. For this use I
-        don't really care if the domain goes down. Realistically this would only happen if there's some back end AWS issues, and it's fine for my personal site to go down for a few minutes. With the domain registered time to
-        move on to the next part. HTTPS
+        don't really care if the domain goes down. Realistically this would only happen if there's some back end AWS issues, and it's fine for my personal site to go down for a few minutes. I did have to mess
+        with a bit of configuration to get the sub domain to go to my own personal raspbery Pi running the discord bot you see abve, but it's not to complex to set up. With the domain registered time to move on to the next part. HTTPS
         <Header size='medium' inverted={inverted}>Cloudfront</Header>
     <Divider />
         No one wants to see the http lock yelling at you, and I don't want anyone to think that I don't take security seriously. AWS is a well used stack, and after some <s>Googleing</s> research, Cloudfront + Route 53
