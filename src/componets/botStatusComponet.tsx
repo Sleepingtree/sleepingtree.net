@@ -1,6 +1,8 @@
 import { useState, useEffect, FunctionComponent } from 'react';
-import { Container, Icon, Image, Segment } from 'semantic-ui-react';
+import { Icon, Image, Segment } from 'semantic-ui-react';
 import ioClient from 'socket.io-client';
+
+import '../css/discordBot.css'
 
 import { discordBotUrl, ioConnectPath } from '../paths';
 
@@ -20,7 +22,6 @@ const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true
   useEffect(() => {
     const socket = ioClient(discordBotUrl, {path: ioConnectPath});
     socket.on('botStatus', (data) =>{
-      console.log(data);
       if(data){
         setRespose(data);
       }
@@ -35,18 +36,18 @@ const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true
     const animationTimer = response.message.length / 5;
 
     return (
-    <Container>
-      <Container id='bot-photo-div' style={{float:'left'}}>
+    <div className='bot-card-div'>
+      <div className='bot-photo-div'>
         <Image src={response.avatarURL} avatar floated='left' />
-        <Icon name="circle" id="bot-status-icon" />
-      </Container>
-      <Container className={desktop ? 'ticker-wrap desktop' :'ticker-wrap mobile'}>
+        <Icon name="circle" id="bot-status-icon"/>
+      </div>
+      <div className={desktop ? 'ticker-wrap desktop' :'ticker-wrap mobile'}>
         <div className={response.message.length > 10 ? 'ticker' : ''} 
           style={{animationDuration : `${animationTimer}s`}}>
             {response.message}
         </div>
-      </Container>
-    </Container>
+      </div>
+    </div>
   )}
 
   const unloaded = (
@@ -56,7 +57,7 @@ const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true
   )
 
   const body = (
-    <Segment inverted={inverted} id='bot-card-div'>
+    <Segment inverted={inverted}>
       {(response) ? loaded() : unloaded}
     </Segment>
   )
