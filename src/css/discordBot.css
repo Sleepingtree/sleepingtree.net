@@ -1,14 +1,21 @@
 #bot-loading-icon{
     animation: rotation 5s infinite linear;
+    width: 20px;
+    height: 20px;
 }
 
-#bot-status-icon{
-    color: green;
-    font-size: 0.5em;
-    position: relative;
-    float: right;
-    right: 0.6rem;
-    bottom: 1.9rem;
+.online-icon{
+    background: green;
+font-size: 2em;
+position: relative;
+float: right;
+right: 0.8rem;
+bottom: 1.7rem;
+border-radius: 1em;
+border: solid black;
+height: .35em;
+width: .35em;
+border-width: .075em;
 }
 
 .bot-card-div{

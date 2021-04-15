@@ -39,7 +39,7 @@ const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true
     <div className='bot-card-div'>
       <div className='bot-photo-div'>
         <Image src={response.avatarURL} avatar floated='left' />
-        <Icon name="circle" id="bot-status-icon"/>
+        <span className='online-icon'/>
       </div>
       <div className={desktop ? 'ticker-wrap desktop' :'ticker-wrap mobile'}>
         <div className={response.message.length > 10 ? 'ticker' : ''} 

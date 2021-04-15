@@ -44,10 +44,10 @@ const renderDiscordBot = (inverted: boolean, ref?: React.RefObject<HTMLElement>)
 }
 
 const renderInner = ({inverted = true}, isMobile: boolean, ref?: React.RefObject<HTMLElement>) =>
-  <>
+  <Container>
     <Image src={avatarImage} avatar size='small' floated='left' />
     <Header inverted={inverted} size='large'>Welcome to my site</Header>
-    <Container text>
+    <Container text floated='left'>
       This site was made with TypeScript, React and Simantitic UI. The purpose of this site it to serve as a mixed personal and professional site.
       I consider myself more of a backend developer then front end, but hopefully that doesn't show to much.
       <Divider hidden/>
@@ -60,7 +60,8 @@ const renderInner = ({inverted = true}, isMobile: boolean, ref?: React.RefObject
       and if you want to see the implimentation details both the bot repo that provides the stats as well as the repo used to display the bot status. Though the 
       backend has a lot of differnt intergration points.
     </Container>
-    <Image src={banner} centered />
-  </>
+    <Divider hidden/>
+    <Image src={banner}/>
+  </Container>
 
 export default Welcome;

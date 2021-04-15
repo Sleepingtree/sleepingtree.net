@@ -128,7 +128,16 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
           </List.Item>
         </List>
         <Divider hidden/>
-          I'm bad at wrapping this up so placeholder for now
+        Most of this is not exactly the most complex logic once you know what the flow is, but coming from Java it was interesting to learn about the event architecture. The two entry points
+        Where a user would start the process come both from a Discord message. Coming from a rest based enviroment I'd assume the API would work by hitting some http endpoint, But after using
+        it a bit, it has it's pros and cons over this approach. What's nice is each event can be listed by many subscribers. One nice use case of this is the bot status card on this site.
+        With one event I can have every listener tied to a socket get an update pushed to it. In the case of the bot where I really only want one listener to execute this does mean we have a
+        kind of clunky if check or "guard clause" at the top of every event.
+        <Divider hidden/>
+        On top of events there is also learning about promises since so much of the interaction is between a discord server which obviously has a lot of time waiting for a response. (See what I did there?)
+        Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc. You only have one thread to work with. Clearly this seems like a huge
+        limitation, but really with async functions it starts to mean that you don't have to worry about thread pools and running out. If you have cpu cycles your app will handle more calls instead of being
+        starved on http theads, or worker threads, or whatever.
       </Container>
     </>
   )
