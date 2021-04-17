@@ -17,11 +17,11 @@ const Footer: FunctionComponent<FooterProps> = ({ inverted = true }) =>
                 Contact Info
               </Header>
                 <Container text>
-                <Icon name={"mail"}/>Email: <a href='mailto:ajgrabow@gmail.com'>ajgrabow@gmail.com</a>
+                <Icon name={"mail"}/>Email: <a href='mailto:ajgrabow@gmail.com' target='new'>ajgrabow@gmail.com</a>
                 <br />
-                <Icon name={"github"}/>GitHub: <a href='github.com/Sleepingtree'>github.com/Sleepingtree</a>
+                <Icon name={"github"}/>GitHub: <a href='https://github.com/Sleepingtree' target='new'>github.com/Sleepingtree</a>
                 <br/>
-                <Icon name={"linkedin"}/>Linkedin: <a href='linkedin.com/in/AaronGrabow'>linkedin.com/in/AaronGrabow</a>
+                <Icon name={"linkedin"}/>Linkedin: <a href='https://linkedin.com/in/AaronGrabow' target='new'>linkedin.com/in/AaronGrabow</a>
               </Container>
             </Grid.Column>
             <Grid.Column width={5} />
