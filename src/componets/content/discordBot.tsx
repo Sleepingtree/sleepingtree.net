@@ -1,41 +1,43 @@
-import React, { createRef, FunctionComponent } from 'react';
+import React, { createRef, FunctionComponent, useContext } from 'react';
 import { Container, Divider, Header, List, Sticky } from 'semantic-ui-react';
 import BotStatusComponet from '../botStatusComponet';
 import RenderDesktop from '../layout/desktopLayout';
-import isMobile from '../helpers/mobilehelper';
+import { MobileContext } from '../helpers/mobilehelper';
+import { GlobalContext, GlobalContextType } from '../helpers/globalContext';
 
 type discordBotProps = {
   inverted?: boolean
 }
 
-const DiscordBotMobile = (inverted: boolean, ref: React.RefObject<HTMLElement>) => {
+const DiscordBotMobile = (context: GlobalContextType,ref: React.RefObject<HTMLElement>) => {
   return (
     <div>
-      {renderInner(inverted, true, ref)}
+      {renderInner(context, true, ref)}
     </div>
   )
 }
 
-const MobileDiscordBotSection = (inverted: boolean, ref: React.RefObject<HTMLElement>, isMobile: boolean) => {
+const MobileDiscordBotSection = (ref: React.RefObject<HTMLElement>, isMobile: boolean) => {
+  const context = useContext(GlobalContext);
   return (
     <>
       <Sticky context={ref}>
-        <BotStatusComponet desktop={!isMobile} inverted={inverted} />
+        <BotStatusComponet desktop={!isMobile} inverted={context.inverted} />
       </Sticky>
       <Divider hidden />
     </>
   )
 }
 
-const renderInnerDesktop = (inverted: boolean, ref: React.RefObject<HTMLElement>) => {
-  return () => renderInner(inverted, false, ref)
+const renderInnerDesktop = (context: GlobalContextType, ref: React.RefObject<HTMLElement>) => {
+  return () => renderInner(context, false, ref)
 }
 
-const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject<HTMLElement>) => {
+const renderInner = (context: GlobalContextType, isMobile: boolean, ref?: React.RefObject<HTMLElement>) => {
   return (
     <>
-      <Container text inverted={inverted}>
-        <Header size={'large'} inverted={inverted}>How it started</Header>
+      <Container text inverted={context.inverted}>
+        <Header size={'large'} inverted={context.inverted}>How it started</Header>
         <Divider />
             Like I said on my welcome page I consider myself a back-end developer. I was given the task to work with another developer to set up
             a React app as a proof of concept for modernizing our internal UI. They have used React before and already prototyped a skeleton UI.
@@ -49,16 +51,16 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
             Boy, am I ever glad I was convinced to look into Node
             <Divider hidden />
       </Container>
-      {isMobile && ref ? MobileDiscordBotSection(inverted, ref, true) : <Divider hidden />}
-      <Container text inverted={inverted}>
+      {isMobile && ref ? MobileDiscordBotSection(ref, true) : <Divider hidden />}
+      <Container text inverted={context.inverted}>
         Around the same time Valerant was the new hotness as far as gaming went, and I was part of a large enough group that we could consitently
         have our own in house games. In the past I had built a bot to help with in house games, but used for league. It used a system where people could list
         their prefered roles and try and figure out how to make teams. This bot had some issues with it which I will get to later. With all this in mind
         I decided to kill two birds with one stone so to speak. Build a Bot to learn Node and help us spead up in house game creation.
             <Divider hidden />
-        <Header size='medium' inverted={inverted}>Initial Goals for the bot</Header>
+        <Header size='medium' inverted={context.inverted}>Initial Goals for the bot</Header>
         <Divider />
-        <List ordered inverted={inverted}>
+        <List ordered inverted={context.inverted}>
           <List.Item>
             Learn about Node.js
               </List.Item>
@@ -85,7 +87,7 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
             from selection depending on who was playing. I want to be lazy too.
               </List.List>
         </List>
-        <Header size='medium' inverted={inverted}>Writing the bot</Header>
+        <Header size='medium' inverted={context.inverted}>Writing the bot</Header>
         <Divider/>
         With the goals in mind I set out to start. As I said I had already been using Node.js at work for a bit, so before I dove into the Discord side of things,
         I set up a basic express app. It started as a way to keep my app running after whatever script I wrote finished executing, but it turned out to have some nice 
@@ -101,7 +103,7 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
         the sum of the Elo of the members and the chance of each team to win to be based on the differance in the teams Elo.
         <Divider hidden/>
         Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team now to figure out the work flow. 
-        <List ordered inverted={inverted}>
+        <List ordered inverted={context.inverted}>
           <List.Item>
             I post the start game command
           </List.Item>
@@ -143,11 +145,13 @@ const renderInner = (inverted: boolean, isMobile: boolean, ref?: React.RefObject
   )
 }
 
-const DiscordBot: FunctionComponent<discordBotProps> = ({ inverted = true }) => {
+const DiscordBot: FunctionComponent<discordBotProps> = () => {
   const ref = createRef<HTMLDivElement>();
+  const isMobile = useContext(MobileContext);
+  const context = useContext(GlobalContext);
   return (
     <div ref={ref}>
-      {isMobile() ? DiscordBotMobile(inverted, ref) : RenderDesktop(inverted, renderInnerDesktop(inverted, ref))}
+      {isMobile ? DiscordBotMobile(context, ref) : RenderDesktop(renderInnerDesktop(context, ref))}
     </div>
   )
 }

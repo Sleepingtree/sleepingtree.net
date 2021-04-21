@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Dropdown, Menu, MenuItemProps } from 'semantic-ui-react'
+import { GlobalContext } from '../helpers/globalContext';
 
 type MenuState = {
   activeItem: string
-  inverted?: boolean
 }
 
 export default class MenuComponet extends Component<{}, MenuState> {
   
   static defaultProps = {
-    activeItem: 'welcome',
-    inverted: true
+    activeItem: 'welcome'
   }
+
+  static contextType = GlobalContext;
 
   constructor(props: MenuState) {
     super(props);
@@ -26,9 +27,9 @@ export default class MenuComponet extends Component<{}, MenuState> {
   }
 
   render() {
-    const { activeItem, inverted } = this.state;
+    const { activeItem } = this.state;
     return (
-      <Menu inverted ={inverted}>
+      <Menu inverted ={this.context.inverted}>
         <Link to ='/'>
           <Menu.Item
             name='welcome'
@@ -39,13 +40,13 @@ export default class MenuComponet extends Component<{}, MenuState> {
           </Menu.Item>
         </Link>
 
-        <Dropdown inverted = {inverted} item text='Projects'>
-          <Dropdown.Menu inverted = {inverted}>
+        <Dropdown inverted = {this.context.inverted} item text='Projects'>
+          <Dropdown.Menu inverted = {this.context.inverted}>
             <Link to ='/projects/discordBot'>
-              <Dropdown.Item inverted = {inverted}>Discord bot</Dropdown.Item>
+              <Dropdown.Item inverted = {this.context.inverted}>Discord bot</Dropdown.Item>
             </Link>
             <Link to ='/projects/reactSite'>
-              <Dropdown.Item inverted = {inverted}>This site!</Dropdown.Item>
+              <Dropdown.Item inverted = {this.context.inverted}>This site!</Dropdown.Item>
             </Link>
           </Dropdown.Menu>
         </Dropdown>
