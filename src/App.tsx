@@ -10,24 +10,13 @@ import ReactPoject from './componets/content/reactProject'
 import ThisSiteProject from './componets/content/thisSiteProject'
 import DiscordBot from './componets/content/discordBot'
 import MobileContext from './componets/helpers/mobilehelper';
-import { GlobalContextComponet, GlobalContext, GlobalContextType } from './componets/helpers/globalContext';
-import { useContext } from 'react';
-
-const updateBodyDarkMode = (context: GlobalContextType) => {
-  if (context.inverted) {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
-};
+import { GlobalContextComponet } from './componets/helpers/globalContext';
 
 const App = () => {
-  const context = useContext(GlobalContext);
   return (
     <Router>
       <MobileContext>
         <GlobalContextComponet>
-        {updateBodyDarkMode(context)}
         <div id='page-container'>
           <div id="content-wrap">
             <Menu/>

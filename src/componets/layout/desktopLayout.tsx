@@ -1,4 +1,4 @@
-import React, { createRef, useContext } from "react";
+import { createRef, useContext } from "react";
 import { Container, Grid, GridColumn, Sticky } from 'semantic-ui-react';
 import BotStatusComponet from '../botStatusComponet';
 import {GlobalContext} from '../helpers/globalContext';

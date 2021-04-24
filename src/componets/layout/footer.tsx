@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext } from "react";
 import { Container, Grid, Header, Icon, Segment, Sticky } from "semantic-ui-react";
 import { GlobalContext } from "../helpers/globalContext";
 

@@ -49,3 +49,7 @@ code {
 #content-wrap {
   padding-bottom: 11rem;    /* Footer height */
 }
+
+.dark-mode-toggle{
+  scale: .7;
+}
