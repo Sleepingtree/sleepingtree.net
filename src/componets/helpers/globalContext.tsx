@@ -1,17 +1,31 @@
 import { createContext, useState } from 'react';
+import Cookies from 'universal-cookie';
 
 export type GlobalContextType = {
     inverted: boolean;
     toggleInverted: () => void;
 }
 
-export const GlobalContext = createContext({inverted: true, toggleInverted: () =>{}});
+const cookieName = 'darkMode';
+const cookieAge = 60 * 24 * 7; 
+
+const cookies = new Cookies();
+
+let inverted: boolean;
+const cookieValue = cookies.get<string>(cookieName)
+if(typeof cookieValue === 'string'){
+    inverted = cookieValue === 'true';
+}else{
+    inverted = true;
+}
+
+export const GlobalContext = createContext({inverted: inverted, toggleInverted: () =>{}});
 
 export const GlobalContextComponet: React.FC = (props) => {
-    const [inverted, setInverted] = useState(true);
+    const [invertedState, setInverted] = useState(inverted);
 
     const defaultGlobalContext = {
-        inverted: inverted,
+        inverted: invertedState,
         toggleInverted: () => {
             setInverted((old) => {
                 updateBodyDarkMode(!old);
@@ -21,6 +35,7 @@ export const GlobalContextComponet: React.FC = (props) => {
     }
 
     const updateBodyDarkMode = (inverted: boolean) => {
+        cookies.set(cookieName, inverted , {path: '/', sameSite: 'strict', maxAge: cookieAge});
         if (inverted) {
           document.body.classList.add('dark');
         } else {
@@ -28,7 +43,7 @@ export const GlobalContextComponet: React.FC = (props) => {
         }
       };
 
-    updateBodyDarkMode(inverted);
+    updateBodyDarkMode(invertedState);
 
     return (
         <GlobalContext.Provider value={defaultGlobalContext}>

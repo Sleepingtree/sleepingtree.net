@@ -2,7 +2,7 @@
   "name": "sleepingtree.net",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost",
+  "proxy": "https://api.sleepingtree.net",
   "dependencies": {
     "react": "^17.0.1",
     "react-dark-mode-toggle": "^0.2.0",
@@ -12,6 +12,7 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "socket.io-client": "^4.0.1",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.1"
   },
   "scripts": {
