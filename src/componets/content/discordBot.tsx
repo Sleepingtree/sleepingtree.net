@@ -90,7 +90,7 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
           So we have a node app, great.. now what? Well if you google Discord bot node you will get a ton of results. <a href='https://discord.js.org'>Discord js </a>
           is the other main include for this project, there's not much to say about it other then it's a nice api to use to build any sort of discord bot using JavaScript.
           <Divider hidden/>
-          For those who are not familier with games the idea of what can make a balanced game
+          For those who are not familier with games. The idea of what can make a balanced game
           is a very complex system, but in our case we can boil it down to say our goal is to get the closer we get the teams to a 50% chance to win, the better the balance.
           Well how do we know what chance a team has to win? Enter the Elo system. Long story short Elo came up with a system to rank chess players. The higher the score the 
           better the player and you can figure out the chance of winning each player has based on the Elo differance. We can use this same concept to say okay a team's Elo is
