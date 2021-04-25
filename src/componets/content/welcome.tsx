@@ -45,7 +45,7 @@ const Welcome = () =>{
       <Container text>
         The bot status updates in real time based on what I am doing, or what ever music my friends are playing in discord. This is done via web-sockets instead of http
         and if you want to see the implimentation details both the bot repo that provides the stats as well as the repo used to display the bot status. Though the 
-        backend has a lot of different intergration points.
+        backend has a lot of different integration points.
       </Container>
       <Divider hidden/>
       <Image src={banner}/>
