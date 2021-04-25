@@ -16,7 +16,7 @@ type BotStatusProps ={
   desktop: boolean;
 }
 
-const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true, desktop}) => {
+const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true}) => {
   const [response, setRespose] = useState<BotStatus>();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true
     <div className='bot-card-div'>
       <div className='bot-photo-div'>
         <Image src={response.avatarURL} avatar floated='left' />
-        <span className='online-icon'/>
+        <span className={inverted ? 'online-icon inverted' : 'online-icon'}/>
       </div>
       <div className='ticker-wrap'>
         <div className={response.message.length > 10 ? 'ticker' : ''} 
