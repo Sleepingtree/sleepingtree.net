@@ -10,11 +10,13 @@ import ReactPoject from './componets/content/reactProject'
 import ThisSiteProject from './componets/content/thisSiteProject'
 import DiscordBot from './componets/content/discordBot'
 import MobileContext from './componets/helpers/mobilehelper';
+import ScrollToTop from './componets/helpers/scrollHook'
 import { GlobalContextComponet } from './componets/helpers/globalContext';
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop>
       <MobileContext>
         <GlobalContextComponet>
         <div id='page-container'>
@@ -39,6 +41,7 @@ const App = () => {
         </div>
         </GlobalContextComponet>
       </MobileContext>
+      </ScrollToTop>
     </Router>
   )
 }
