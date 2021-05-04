@@ -44,8 +44,8 @@ const Welcome = () =>{
       {isMobile && ref ? renderDiscordBot() : <Divider hidden />}
       <Container text>
         The bot status updates in real time based on what I am doing, or what ever music my friends are playing in discord. This is done via web-sockets instead of http
-        and if you want to see the implementation details both the bot repo that provides the stats as well as the repo used to display the bot status allow that, though the 
-        backend has a lot of different integration points.
+        and if you want to see the implementation details of both the bot repo that provides the status as well as the repo used to display the bot status they are public on my github. Though, the 
+        back-end is used for more then just providing the status, and has a lot of other integration points.
       </Container>
       <Divider hidden/>
       <Image src={banner}/>
