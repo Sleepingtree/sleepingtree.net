@@ -16,11 +16,10 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
   const context = useContext(GlobalContext);
 
   const MobileDiscordBotSection = () => {
-    const context = useContext(GlobalContext);
     return (
       <>
         <Sticky context={ref}>
-          <BotStatusComponet desktop={!isMobile} inverted={context.inverted} />
+          <BotStatusComponet />
         </Sticky>
         <Divider hidden />
       </>

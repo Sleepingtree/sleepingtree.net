@@ -22,7 +22,7 @@ const Welcome = () =>{
       <>
         <Divider hidden />
           <Sticky context={ref}>
-            <BotStatusComponet desktop={!isMobile} inverted={globalContext.inverted} />
+            <BotStatusComponet/>
           </Sticky>
         <Divider hidden />
       </>
