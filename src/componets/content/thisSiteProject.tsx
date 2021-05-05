@@ -42,7 +42,7 @@ const ThisSiteProject = ({ inverted = true }) => <div>
     <Divider />
         Route 53 is simply AWS's DNS server with a lot of nice quality of life features built into it. For example it comes with built in health checks, logging, sub net mapping and more. For this use I
         don't really care if the domain goes down. Realistically this would only happen if there's some back end AWS issues, and it's fine for my personal site to go down for a few minutes. I did have to mess
-        with a bit of configuration to get the sub domain to go to my own personal raspbery Pi running the discord bot you see abve, but it's not too complex to set up. With the domain registered, time to move on to the next part. HTTPS
+        with a bit of configuration to get the sub domain to go to my own personal raspbery Pi running the discord bot you see above, but it's not too complex to set up. With the domain registered, time to move on to the next part. HTTPS
         <Header size='medium' inverted={inverted}>Cloudfront</Header>
     <Divider />
         No one wants to see the http lock yelling at you, and I don't want anyone to think that I don't take security seriously. AWS is a well used stack, and after some <s>Googleing</s> research, Cloudfront + Route 53

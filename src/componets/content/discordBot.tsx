@@ -93,9 +93,9 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
           is a very complex system, but in our case we can boil it down to say our goal is to get the teams as close to a 50% chance to win as possible, which reflects a better balance.
           Well how do we know what chance a team has to win? Enter the Elo system. Long story short Elo came up with a system to rank chess players. The higher the score the 
           better the player and you can figure out the chance of winning each player has based on the Elo differance. We can use this same concept to say, okay a team's Elo is
-          the sum of the Elo of the members and the chance of each team to win is based on the differance in the teams Elo score.
+          the sum of the Elo of the members and the chance of each team to win is based on the difference in the teams Elo score.
           <Divider hidden/>
-          Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team now to figure out the work flow. 
+          Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team; now to figure out the work flow. 
           <List ordered inverted={context.inverted}>
             <List.Item>
               I post the start game command
@@ -130,7 +130,7 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
           kind of clunky if check or "guard clause" at the top of every event.
           <Divider hidden/>
           On top of events there is also learning about promises since so much of the interaction is between a discord server which obviously has a lot of time waiting for a response. (See what I did there?)
-          Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc. You only have one thread to work with. Clearly this seems like a huge
+          Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc., you only have one thread to work with. Clearly this seems like a huge
           limitation, but really with async functions it starts to mean that you don't have to worry about thread pools and running out. If you have cpu cycles your app will handle more calls instead of being
           starved on http theads, or worker threads, or whatever.
         </Container>
