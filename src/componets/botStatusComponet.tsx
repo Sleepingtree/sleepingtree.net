@@ -1,23 +1,20 @@
-import { useState, useEffect, FunctionComponent } from 'react';
+import { useState, useEffect, FunctionComponent, useContext } from 'react';
 import { Icon, Image, Segment } from 'semantic-ui-react';
 import ioClient from 'socket.io-client';
 
 import '../css/discordBot.css'
 
 import { discordBotUrl, ioConnectPath } from '../paths';
+import { GlobalContext } from './helpers/globalContext';
 
 type BotStatus = {
   message: string;
   avatarURL: string;
 }
 
-type BotStatusProps ={
-  inverted: boolean;
-  desktop: boolean;
-}
-
-const BotStatusComponet: FunctionComponent<BotStatusProps>  = ({ inverted = true}) => {
+const BotStatusComponet: FunctionComponent  = () => {
   const [response, setRespose] = useState<BotStatus>();
+  const { inverted } = useContext(GlobalContext);
 
   useEffect(() => {
     const socket = ioClient(discordBotUrl, {path: ioConnectPath});
