@@ -57,28 +57,28 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
             <List.Item>
               Learn about Node.js
                 </List.Item>
-            <List.List>
+                
               I was already using Node for work to help with the react project, but I didn't quite feel at home.
-                </List.List>
+                
             <List.Item>
               Make the bot work with every game.
                 </List.Item>
-            <List.List>
+            
               My old bot was very much coupled to League, as not every game has such hard defined roles like League.
-                </List.List>
+                
             <List.Item>
               Make the bot user friendly
                 </List.Item>
-            <List.List>
+            
               Users should have direct interaction with the team generation, or manually making teams shouldn't have to go thought the bot.
-                </List.List>
+                
             <List.Item>
               Make the bot require less set up
                 </List.Item>
-            <List.List>
+            
               With my old script, I had to maintain my own list of what users would like to play as well as manually add/remove people 
               from selection depending on who was playing. I want to be lazy too.
-                </List.List>
+               
           </List>
           <Header size='medium' inverted={context.inverted}>Writing the bot</Header>
           <Divider/>
@@ -93,20 +93,19 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
           is a very complex system, but in our case we can boil it down to say our goal is to get the teams as close to a 50% chance to win as possible, which reflects a better balance.
           Well how do we know what chance a team has to win? Enter the Elo system. Long story short Elo came up with a system to rank chess players. The higher the score the 
           better the player and you can figure out the chance of winning each player has based on the Elo differance. We can use this same concept to say, okay a team's Elo is
-          the sum of the Elo of the members and the chance of each team to win is based on the difference in the teams Elo score.
+          the sum of the Elo of the members and the chance of each team to win is based on the differeance in the teams Elo score.
           <Divider hidden/>
-          Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team; now to figure out the work flow. 
+          Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team now to figure out the work flow. 
           <List ordered inverted={context.inverted}>
             <List.Item>
               I post the start game command
             </List.Item>
             <List.Item>
               The bot sees everyone in the voice channel I'm in and what game I'm playing.
-              <List.List>
-                <List.Item>
-                  Check if the user has an Elo for this game and load it
-                </List.Item>
-              </List.List>
+             <List.Item>
+              Check if the user has an Elo for this game and load it
+             </List.Item>
+              
             </List.Item>
             <List.Item>
               divide up the teams so they are even.... realize this doesn't seem obvious found out it's horribly bad to implement, find out it's something called The Partition Problem,
@@ -130,7 +129,7 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
           kind of clunky if check or "guard clause" at the top of every event.
           <Divider hidden/>
           On top of events there is also learning about promises since so much of the interaction is between a discord server which obviously has a lot of time waiting for a response. (See what I did there?)
-          Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc., you only have one thread to work with. Clearly this seems like a huge
+          Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc. You only have one thread to work with. Clearly this seems like a huge
           limitation, but really with async functions it starts to mean that you don't have to worry about thread pools and running out. If you have cpu cycles your app will handle more calls instead of being
           starved on http theads, or worker threads, or whatever.
         </Container>
