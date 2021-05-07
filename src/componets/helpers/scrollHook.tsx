@@ -3,9 +3,7 @@ import { useLocation } from "react-router-dom";
 
 const RouterScollHook: React.FC = (props) => {
     const { pathname } = useLocation();
-    debugger;
     useEffect(() => {
-        debugger;
         window.scrollTo({
             top: 0,
             left: 0,
