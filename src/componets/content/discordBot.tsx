@@ -1,16 +1,11 @@
-import React, { createRef, FunctionComponent, useContext } from 'react';
+import { createRef, useContext } from 'react';
 import { Container, Divider, Header, List, Sticky } from 'semantic-ui-react';
 import BotStatusComponet from '../botStatusComponet';
 import RenderDesktop from '../layout/desktopLayout';
 import { MobileContext } from '../helpers/mobilehelper';
 import { GlobalContext } from '../helpers/globalContext';
 
-type discordBotProps = {
-  inverted?: boolean
-}
-
-
-const DiscordBot: FunctionComponent<discordBotProps> = () => {
+const DiscordBot = () => {
   const ref = createRef<HTMLDivElement>();
   const isMobile = useContext(MobileContext);
   const context = useContext(GlobalContext);
@@ -25,7 +20,7 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
       </>
     )
   }
-  
+
   const renderInner = () => {
     return (
       <>
@@ -35,12 +30,12 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
               Like I said on my welcome page I consider myself a back-end developer. I was given the task to work with another developer to set up
               a React app as a proof of concept for modernizing our internal UI. They have used React before and already prototyped a skeleton UI.
               <Divider hidden />
-  
+
               However; as many UI's go the actual UI is only half the battle. I was brought on to help with the backend implementation. In retrospect
               My boss probably assumed I would implement this backend with Java, as we were a primarly Java based at the time, I was talked into
               implementing the back end in Node.js to keep the stack homogeneous.
               <Divider hidden />
-  
+
               Boy, am I ever glad I was convinced to look into Node
               <Divider hidden />
         </Container>
@@ -57,45 +52,45 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
             <List.Item>
               Learn about Node.js
                 </List.Item>
-            <List.List>
+
               I was already using Node for work to help with the react project, but I didn't quite feel at home.
-                </List.List>
+
             <List.Item>
               Make the bot work with every game.
                 </List.Item>
-            <List.List>
+
               My old bot was very much coupled to League, as not every game has such hard defined roles like League.
-                </List.List>
+
             <List.Item>
               Make the bot user friendly
                 </List.Item>
-            <List.List>
+
               Users should have direct interaction with the team generation, or manually making teams shouldn't have to go thought the bot.
-                </List.List>
+
             <List.Item>
               Make the bot require less set up
                 </List.Item>
-            <List.List>
-              With my old script, I had to maintain my own list of what users would like to play as well as manually add/remove people 
+
+              With my old script, I had to maintain my own list of what users would like to play as well as manually add/remove people
               from selection depending on who was playing. I want to be lazy too.
-                </List.List>
+
           </List>
           <Header size='medium' inverted={context.inverted}>Writing the bot</Header>
-          <Divider/>
+          <Divider />
           With the goals in mind I set out to start. As I said I had already been using Node.js at work for a bit, so before I dove into the Discord side of things,
-          I set up a basic express app. It started as a way to keep my app running after whatever script I wrote finished executing, but it turned out to have some nice 
-          side benefits like providing real-time data to the bot status card right at the top of this page! 
-          <Divider hidden/>
+          I set up a basic express app. It started as a way to keep my app running after whatever script I wrote finished executing, but it turned out to have some nice
+          side benefits like providing real-time data to the bot status card right at the top of this page!
+          <Divider hidden />
           So we have a node app, great.. now what? Well if you google Discord bot node you will get a ton of results. <a href='https://discord.js.org'>Discord js </a>
           is the other main include for this project, there's not much to say about it other then it's a nice api to use to build any sort of discord bot using JavaScript.
-          <Divider hidden/>
+          <Divider hidden />
           For those who are not familier with games. The idea of what can make a balanced game
           is a very complex system, but in our case we can boil it down to say our goal is to get the teams as close to a 50% chance to win as possible, which reflects a better balance.
-          Well how do we know what chance a team has to win? Enter the Elo system. Long story short Elo came up with a system to rank chess players. The higher the score the 
+          Well how do we know what chance a team has to win? Enter the Elo system. Long story short Elo came up with a system to rank chess players. The higher the score the
           better the player and you can figure out the chance of winning each player has based on the Elo differance. We can use this same concept to say, okay a team's Elo is
-          the sum of the Elo of the members and the chance of each team to win is based on the difference in the teams Elo score.
-          <Divider hidden/>
-          Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team; now to figure out the work flow. 
+          the sum of the Elo of the members and the chance of each team to win is based on the differeance in the teams Elo score.
+          <Divider hidden />
+          Okay, so now we have a bot up and running, enhancements from my old bot, and a basic backings on how to make a team now to figure out the work flow.
           <List ordered inverted={context.inverted}>
             <List.Item>
               I post the start game command
@@ -105,7 +100,10 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
               <List.List>
                 <List.Item>
                   Check if the user has an Elo for this game and load it
-                </List.Item>
+              </List.Item>
+              <List.Item>
+                  Otherwise assume the player has the default mmr
+              </List.Item>
               </List.List>
             </List.Item>
             <List.Item>
@@ -122,22 +120,22 @@ const DiscordBot: FunctionComponent<discordBotProps> = () => {
               move the users back and update their Elo
             </List.Item>
           </List>
-          <Divider hidden/>
+          <Divider hidden />
           Most of this is not exactly the most complex logic once you know what the flow is, but coming from Java it was interesting to learn about the event architecture. The two entry points
           Where a user would start the process both come from a Discord message. Coming from a rest-based enviroment I'd assume the API would work by hitting some http endpoint, But after using
           it a bit, it has it's pros and cons over this approach. What's nice is each event can be listed by many subscribers. One nice use case of this is the bot status card on this site.
           With one event I can have every listener tied to a socket get an update pushed to it. In the case of the bot, in which I really only want one listener to execute, this does mean we have a
           kind of clunky if check or "guard clause" at the top of every event.
-          <Divider hidden/>
+          <Divider hidden />
           On top of events there is also learning about promises since so much of the interaction is between a discord server which obviously has a lot of time waiting for a response. (See what I did there?)
-          Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc., you only have one thread to work with. Clearly this seems like a huge
+          Async functions and promises are great syntactical suger once you really grok the node event loop. Unlike Java, C, python etc. You only have one thread to work with. Clearly this seems like a huge
           limitation, but really with async functions it starts to mean that you don't have to worry about thread pools and running out. If you have cpu cycles your app will handle more calls instead of being
           starved on http theads, or worker threads, or whatever.
         </Container>
       </>
     )
   }
-  
+
   return (
     <div ref={ref}>
       {isMobile ? renderInner() : RenderDesktop(renderInner)}
