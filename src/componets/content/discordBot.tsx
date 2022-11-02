@@ -13,9 +13,7 @@ const DiscordBot = () => {
   const MobileDiscordBotSection = () => {
     return (
       <>
-        <Sticky context={ref}>
-          <BotStatusComponet />
-        </Sticky>
+        <BotStatusComponet />
         <Divider hidden />
       </>
     )
@@ -27,17 +25,17 @@ const DiscordBot = () => {
         <Container text inverted={context.inverted}>
           <Header size={'large'} inverted={context.inverted}>How it started</Header>
           <Divider />
-              Like I said on my welcome page I consider myself a back-end developer. I was given the task to work with another developer to set up
-              a React app as a proof of concept for modernizing our internal UI. They have used React before and already prototyped a skeleton UI.
-              <Divider hidden />
+          Like I said on my welcome page I consider myself a back-end developer. I was given the task to work with another developer to set up
+          a React app as a proof of concept for modernizing our internal UI. They have used React before and already prototyped a skeleton UI.
+          <Divider hidden />
 
-              However; as many UI's go the actual UI is only half the battle. I was brought on to help with the backend implementation. In retrospect
-              My boss probably assumed I would implement this backend with Java, as we were a primarly Java based at the time, I was talked into
-              implementing the back end in Node.js to keep the stack homogeneous.
-              <Divider hidden />
+          However; as many UI's go the actual UI is only half the battle. I was brought on to help with the backend implementation. In retrospect
+          My boss probably assumed I would implement this backend with Java, as we were a primarly Java based at the time, I was talked into
+          implementing the back end in Node.js to keep the stack homogeneous.
+          <Divider hidden />
 
-              Boy, am I ever glad I was convinced to look into Node
-              <Divider hidden />
+          Boy, am I ever glad I was convinced to look into Node
+          <Divider hidden />
         </Container>
         {isMobile && ref ? MobileDiscordBotSection() : <Divider hidden />}
         <Container text inverted={context.inverted}>
@@ -45,34 +43,34 @@ const DiscordBot = () => {
           have our own in-house games. In the past I had built a bot to help with in-house games, but used for league. It used a system in which people could list
           their preferred roles and try and figure out how to make teams. This bot had some issues with it which I will get to later. With all this in mind
           I decided to kill two birds with one stone so to speak. Build a Bot to learn Node, and to help us speed up in house game creation.
-              <Divider hidden />
+          <Divider hidden />
           <Header size='medium' inverted={context.inverted}>Initial Goals for the bot</Header>
           <Divider />
           <List ordered inverted={context.inverted}>
             <List.Item>
               Learn about Node.js
-                </List.Item>
+            </List.Item>
 
-              I was already using Node for work to help with the react project, but I didn't quite feel at home.
+            I was already using Node for work to help with the react project, but I didn't quite feel at home.
 
             <List.Item>
               Make the bot work with every game.
-                </List.Item>
+            </List.Item>
 
-              My old bot was very much coupled to League, as not every game has such hard defined roles like League.
+            My old bot was very much coupled to League, as not every game has such hard defined roles like League.
 
             <List.Item>
               Make the bot user friendly
-                </List.Item>
+            </List.Item>
 
-              Users should have direct interaction with the team generation, or manually making teams shouldn't have to go thought the bot.
+            Users should have direct interaction with the team generation, or manually making teams shouldn't have to go thought the bot.
 
             <List.Item>
               Make the bot require less set up
-                </List.Item>
+            </List.Item>
 
-              With my old script, I had to maintain my own list of what users would like to play as well as manually add/remove people
-              from selection depending on who was playing. I want to be lazy too.
+            With my old script, I had to maintain my own list of what users would like to play as well as manually add/remove people
+            from selection depending on who was playing. I want to be lazy too.
 
           </List>
           <Header size='medium' inverted={context.inverted}>Writing the bot</Header>
@@ -100,10 +98,10 @@ const DiscordBot = () => {
               <List.List>
                 <List.Item>
                   Check if the user has an Elo for this game and load it
-              </List.Item>
-              <List.Item>
+                </List.Item>
+                <List.Item>
                   Otherwise assume the player has the default mmr
-              </List.Item>
+                </List.Item>
               </List.List>
             </List.Item>
             <List.Item>

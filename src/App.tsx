@@ -12,35 +12,48 @@ import DiscordBot from './componets/content/discordBot'
 import MobileContext from './componets/helpers/mobilehelper';
 import ScrollToTop from './componets/helpers/scrollHook'
 import { GlobalContextComponet } from './componets/helpers/globalContext';
+import { useEffect, useState } from 'react';
 
 const App = () => {
+  useEffect(() => {
+    loadWasm()
+  }, [])
+  const loadWasm = async () => {
+    try {
+      const wasm = await import('wasm');
+      wasm.greet()
+    } catch (err) {
+      err instanceof Error ?
+        console.error(`Unexpected error in loadWasm. [Message: ${err.message}]`) : console.error(`error`, err);
+    }
+  };
   return (
     <Router>
       <ScrollToTop>
-      <MobileContext>
-        <GlobalContextComponet>
-        <div id='page-container'>
-          <div id="content-wrap">
-            <Menu/>
-            <main>
-              <Route path={paths.baseUrl} exact
-                render={() => (
-                  <Welcome/>)
-                } />
-              <Route path={paths.projectsPath} exact component={ReactPoject} />
-              <Route path={paths.thisSitePath} render={() => (
-                <ThisSiteProject/>)
-              } />
-              <Route path={paths.discordBotPath}
-                render={() => (
-                  <DiscordBot/>)
-                } />
-            </main>
-          </div>
-          <Footer/>
-        </div>
-        </GlobalContextComponet>
-      </MobileContext>
+        <MobileContext>
+          <GlobalContextComponet>
+            <div id='page-container'>
+              <div id="content-wrap">
+                <Menu />
+                <main>
+                  <Route path={paths.baseUrl} exact
+                    render={() => (
+                      <Welcome />)
+                    } />
+                  <Route path={paths.projectsPath} exact component={ReactPoject} />
+                  <Route path={paths.thisSitePath} render={() => (
+                    <ThisSiteProject />)
+                  } />
+                  <Route path={paths.discordBotPath}
+                    render={() => (
+                      <DiscordBot />)
+                    } />
+                </main>
+              </div>
+              <Footer />
+            </div>
+          </GlobalContextComponet>
+        </MobileContext>
       </ScrollToTop>
     </Router>
   )

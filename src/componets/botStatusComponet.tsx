@@ -12,44 +12,45 @@ type BotStatus = {
   avatarURL: string;
 }
 
-const BotStatusComponet: FunctionComponent  = () => {
+const BotStatusComponet: FunctionComponent = () => {
   const [response, setRespose] = useState<BotStatus>();
   const { inverted } = useContext(GlobalContext);
 
   useEffect(() => {
-    const socket = ioClient(discordBotUrl, {path: ioConnectPath});
-    socket.on('botStatus', (data) =>{
-      if(data){
+    const socket = ioClient(discordBotUrl, { path: ioConnectPath });
+    socket.on('botStatus', (data) => {
+      if (data) {
         setRespose(data);
       }
     });
-    return () => {socket.disconnect();}
+    return () => { socket.disconnect(); }
   }, []);
 
-  const loaded = () =>{
-    if(!response){
+  const loaded = () => {
+    if (!response) {
       return unloaded;
     }
     const animationTimer = response.message.length / 5;
 
     return (
-    <div className='bot-card-div'>
-      <div className='bot-photo-div'>
-        <Image src={response.avatarURL} avatar floated='left' />
-        <span className={inverted ? 'online-icon inverted' : 'online-icon'}/>
-      </div>
-      <div className='ticker-wrap'>
-        <div className={response.message.length > 10 ? 'ticker' : ''} 
-          style={{animationDuration : `${animationTimer}s`}}>
+      <div className='bot-card-div'>
+        <div className='bot-photo-div'>
+          <Image src={response.avatarURL} avatar floated='left' />
+          <span className={inverted ? 'online-icon inverted' : 'online-icon'} />
+        </div>
+        <div className='ticker-wrap'>
+          <div className={response.message.length > 10 ? 'ticker' : ''}
+            style={{ animationDuration: `${animationTimer}s` }}>
             {response.message}
+          </div>
         </div>
       </div>
-    </div>
-  )}
+    )
+  }
 
   const unloaded = (
     <div>
-      <Icon name="spinner" id="bot-loading-icon" />Loading ...
+      Loading ...
     </div>
   )
 

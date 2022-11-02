@@ -8,38 +8,39 @@ import httpOnly from '../../resorces/Http only access.png';
 
 const ThisSiteProject = () => {
   const { inverted } = useContext(GlobalContext);
+
   return (
     <div>
       <Container text right floated='right'>
         <Header size={'large'} inverted={inverted}>About the stack</Header>
         <Divider />
-      I think the only thing about this stack that is a little out there is semantic UI. Don't get me wrong, It's been super easy to work with, but I feel like having a decided design team would
-      run circles around what Sematic offers. The biggest advantage is it give a nice foundation with little effort. What's more interesting (to me at least) is talking about the deployment stack.
-      <Header size={'large'} inverted={inverted}>CI/CD</Header>
+        I think the only thing about this stack that is a little out there is semantic UI. Don't get me wrong, It's been super easy to work with, but I feel like having a decided design team would
+        run circles around what Sematic offers. The biggest advantage is it give a nice foundation with little effort. What's more interesting (to me at least) is talking about the deployment stack.
+        <Header size={'large'} inverted={inverted}>CI/CD</Header>
         <Divider />
-      Since this is a personal site. I wanted to keep costs down, but at the same time I didn't want to host everything requiring me to have a computer running all the time. I thought about
-      having my Raspberry Pi also run a Apache Httpd server, but I ultimitely decided against this when I ran into troubles compiling the typescript from my
-      &nbsp;<Link to={discordBotPath}>Node discord bot.</Link> AWS free tier has gotten a lot better over the years, and with the low level of traffic I satarted with AWS.
-      <Header size='medium' inverted={inverted}>S3</Header>
+        Since this is a personal site. I wanted to keep costs down, but at the same time I didn't want to host everything requiring me to have a computer running all the time. I thought about
+        having my Raspberry Pi also run a Apache Httpd server, but I ultimitely decided against this when I ran into troubles compiling the typescript from my
+        &nbsp;<Link to={discordBotPath}>Node discord bot.</Link> AWS free tier has gotten a lot better over the years, and with the low level of traffic I satarted with AWS.
+        <Header size='medium' inverted={inverted}>S3</Header>
         <Divider />
-      Since this is a static page hosting site, its using s3's option for static page hosting. The only thing the really had to be tooled with when using s3 for this stack is the fact that react routes
-      will end up confusing the browser and request file paths that do not exist in s3. Using Appache httpd server allows for a higher degree of customization with their path rewrite engine, and while
-      s3 offers a json rewite rules engine it is severely lacking. While it feels a little dirty, an easy option to avoid this is to have 403 and 404 error codes forward to index.html.
-      <Divider hidden />
-      And we are good right?
-      <Divider hidden />
+        Since this is a static page hosting site, its using s3's option for static page hosting. The only thing the really had to be tooled with when using s3 for this stack is the fact that react routes
+        will end up confusing the browser and request file paths that do not exist in s3. Using Appache httpd server allows for a higher degree of customization with their path rewrite engine, and while
+        s3 offers a json rewite rules engine it is severely lacking. While it feels a little dirty, an easy option to avoid this is to have 403 and 404 error codes forward to index.html.
+        <Divider hidden />
+        And we are good right?
+        <Divider hidden />
         <Image src={httpOnly} />
         <Divider hidden />
-      Well, crap.
-      <Divider hidden />
-      Two issues here.
-      <List ordered inverted={inverted}>
+        Well, crap.
+        <Divider hidden />
+        Two issues here.
+        <List ordered inverted={inverted}>
           <List.Item>
             The URL
-        </List.Item>
+          </List.Item>
           <List.Item>
             The unsecure padlock of http shame
-        </List.Item>
+          </List.Item>
         </List>
         <Header size='medium' inverted={inverted}>Route 53</Header>
         <Divider />
